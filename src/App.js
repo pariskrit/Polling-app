@@ -2,6 +2,7 @@ import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import { Container } from "@material-ui/core";
 import { useEffect } from "react";
+import Login from "./components/Login/Login";
 
 function App() {
   const getAllPolls = () => {
@@ -18,14 +19,14 @@ function App() {
       .then((data) => console.log(data));
   };
 
-  useEffect(() => {
-    getAllPolls();
-  }, []);
+  // useEffect(() => {
+  //   getAllPolls();
+  // }, []);
   return (
     <div className="App">
-      {/* <Navbar /> */}
+      <Navbar />
       <Container className="container" maxWidth="md">
-        <h1>Polling system</h1>
+        <Login />
       </Container>
     </div>
   );
