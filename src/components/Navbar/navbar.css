@@ -1,0 +1,8 @@
+.navbar {
+  padding: 0 50px;
+}
+
+.navbar__title {
+  margin-left: 50px;
+  flex: 1;
+}
