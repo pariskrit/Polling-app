@@ -24,3 +24,8 @@
   color: #1890ff;
   cursor: pointer;
 }
+
+.login__error {
+  color: red;
+  margin: 20px 0 !important;
+}

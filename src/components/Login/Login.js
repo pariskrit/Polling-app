@@ -10,38 +10,86 @@ import { Controller, useForm } from "react-hook-form";
 const Login = () => {
   const { control, handleSubmit } = useForm();
 
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
-    <form className="login">
+    <form className="login" onSubmit={handleSubmit(onSubmit)}>
       <h1>Login</h1>
       <div className="login__inputfields">
         <InputLabel htmlFor="input-with-icon-adornment">
           Username or Email
         </InputLabel>{" "}
-        <Input
-          id="input-with-icon-adornment"
-          className="login__input"
-          fullWidth
-          startAdornment={
-            <InputAdornment position="start">
-              <AccountCircle />
-            </InputAdornment>
-          }
+        <Controller
+          control={control}
+          name="username"
+          render={({
+            field: { onChange },
+            fieldState: { error, invalid },
+            formState,
+          }) => (
+            <>
+              <Input
+                id="input-with-icon-adornment"
+                className="login__input"
+                error={invalid}
+                onChange={onChange}
+                fullWidth
+                startAdornment={
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                }
+              />
+              <span className="login__error">{error?.message}</span>
+            </>
+          )}
+          rules={{
+            required: {
+              value: true,
+              message: "*Username or Email is Required",
+            },
+          }}
         />
       </div>
       <div className="login__inputfields">
         <InputLabel htmlFor="input-with-icon-adornment">Password</InputLabel>
-        <Input
-          className="login__input"
-          id="input-with-icon-adornment"
-          fullWidth
-          startAdornment={
-            <InputAdornment position="start">
-              <LockOpenIcon />
-            </InputAdornment>
-          }
+        <Controller
+          control={control}
+          name="password"
+          render={({
+            field: { onChange },
+            fieldState: { error, invalid },
+            formState,
+          }) => (
+            <>
+              <Input
+                className="login__input"
+                id="input-with-icon-adornment"
+                onChange={onChange}
+                error={invalid}
+                fullWidth
+                startAdornment={
+                  <InputAdornment position="start">
+                    <LockOpenIcon />
+                  </InputAdornment>
+                }
+              />
+              <span className="login__error">{error?.message}</span>
+            </>
+          )}
+          rules={{
+            required: { value: true, message: "*Password is Required" },
+          }}
         />
       </div>
-      <Button className="login__button" variant="contained" fullWidth>
+      <Button
+        className="login__button"
+        variant="contained"
+        type="submit"
+        fullWidth
+      >
         {" "}
         Login
       </Button>

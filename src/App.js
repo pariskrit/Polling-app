@@ -27,8 +27,8 @@ function App() {
     <div className="App">
       <Navbar />
       <Container className="container" maxWidth="md">
-        {/* <Login /> */}
-        <Register />
+        <Login />
+        {/* <Register /> */}
       </Container>
     </div>
   );
