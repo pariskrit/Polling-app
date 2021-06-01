@@ -5,8 +5,11 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import "./login.css";
 import { Button } from "@material-ui/core";
+import { Controller, useForm } from "react-hook-form";
 
 const Login = () => {
+  const { control, handleSubmit } = useForm();
+
   return (
     <form className="login">
       <h1>Login</h1>
