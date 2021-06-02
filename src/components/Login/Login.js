@@ -11,7 +11,7 @@ const Login = () => {
   const { control, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    alert("successfully logged in");
   };
 
   return (

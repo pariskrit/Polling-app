@@ -8,7 +8,7 @@ const Register = () => {
   const { control, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    alert("successfully registered");
   };
   return (
     <form className="register" onSubmit={handleSubmit(onSubmit)}>
