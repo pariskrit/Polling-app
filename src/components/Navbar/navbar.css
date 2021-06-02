@@ -4,5 +4,21 @@
 
 .navbar__title {
   margin-left: 50px;
-  flex: 1;
+  flex: 0.9;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0.1;
+}
+
+.buttons__button {
+  text-decoration: none;
+  color: white;
+}
+
+.buttons__button:hover {
+  text-decoration: underline;
 }

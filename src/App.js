@@ -1,13 +1,14 @@
 import React, { Component, useEffect, useState } from "react";
 import "./App.css";
 import { Route, withRouter, Switch } from "react-router-dom";
-
 import { getCurrentUser } from "./util/APIUtils";
 import { ACCESS_TOKEN } from "./constants";
-
 import LoadingIndicator from "./common/LoadingIndicator";
 import Navbar from "./components/Navbar/Navbar";
 import PollList from "./components/poll/PollList";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
+import { Container } from "@material-ui/core";
 
 function App(props) {
   const [currentUser, setCurrentUser] = useState(null);
@@ -57,18 +58,22 @@ function App(props) {
     <div>
       <Navbar />
       <Switch>
-        <Route
-          exact
-          path="/"
-          render={(props) => (
-            <PollList
-              isAuthenticated={isAuthenticated}
-              currentUser={currentUser}
-              handleLogout={handleLogout}
-              {...props}
-            />
-          )}
-        />
+        <Container className="container" maxWidth="md">
+          <Route
+            exact
+            path="/"
+            render={(props) => (
+              <PollList
+                isAuthenticated={isAuthenticated}
+                currentUser={currentUser}
+                handleLogout={handleLogout}
+                {...props}
+              />
+            )}
+          />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+        </Container>
       </Switch>
     </div>
   );
