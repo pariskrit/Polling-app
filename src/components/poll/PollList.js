@@ -70,7 +70,7 @@ function PollList(props) {
     setCurrentVotes([]);
     setCurrentVotes([]);
 
-    // loadPollList();
+    loadPollList();
   }, [props.isAuthenticated]);
 
   function handleLoadMore() {
