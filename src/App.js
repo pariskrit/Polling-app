@@ -1,37 +1,77 @@
+import React, { Component, useEffect, useState } from "react";
 import "./App.css";
+import { Route, withRouter, Switch } from "react-router-dom";
+
+import { getCurrentUser } from "./util/APIUtils";
+import { ACCESS_TOKEN } from "./constants";
+
+import LoadingIndicator from "./common/LoadingIndicator";
 import Navbar from "./components/Navbar/Navbar";
-import { Container } from "@material-ui/core";
-import { useEffect } from "react";
-import Login from "./components/Login/Login";
-import Register from "./components/Register/Register";
+import PollList from "./components/poll/PollList";
 
-function App() {
-  const getAllPolls = () => {
-    const headers = new Headers({
-      "Content-Type": "application/json",
-    });
+function App(props) {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-    return fetch("http://localhost:8080/api/polls?page=0&size=30", {
-      headers,
-      url: "http://localhost:8080/api/polls?page=0&size=30",
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-  };
+  function loadCurrentUser() {
+    setIsLoading(true);
+    getCurrentUser()
+      .then((response) => {
+        setCurrentUser(response);
+        setIsAuthenticated(true);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+      });
+  }
+
+  function handleLogout(
+    redirectTo = "/",
+    notificationType = "success",
+    description = "You're successfully logged out."
+  ) {
+    localStorage.removeItem(ACCESS_TOKEN);
+
+    setCurrentUser(null);
+    setIsAuthenticated(false);
+    props.history.push(redirectTo);
+  }
+
+  function handleLogin() {
+    alert("successfully logged in");
+    loadCurrentUser();
+    props.history.push("/");
+  }
 
   // useEffect(() => {
-  //   getAllPolls();
-  // }, []);
+
+  //   loadCurrentUser();
+  // },[])
+
+  if (isLoading) {
+    return <LoadingIndicator />;
+  }
   return (
-    <div className="App">
+    <div>
       <Navbar />
-      <Container className="container" maxWidth="md">
-        <Login />
-        {/* <Register /> */}
-      </Container>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={(props) => (
+            <PollList
+              isAuthenticated={isAuthenticated}
+              currentUser={currentUser}
+              handleLogout={handleLogout}
+              {...props}
+            />
+          )}
+        />
+      </Switch>
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);

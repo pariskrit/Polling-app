@@ -1,7 +1,3 @@
-* {
-  padding: 0;
-  margin: 0;
-}
-
-.container {
+.app-content {
+  margin-top: 64px;   
 }
