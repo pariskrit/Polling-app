@@ -15,9 +15,10 @@ function Navbar() {
         <IconButton edge="start" color="inherit" aria-label="menu">
           <MenuIcon />
         </IconButton>
-        <Typography variant="h5" className="navbar__title">
-          Polling App
-        </Typography>
+        <Link to="/" className="navbar__title">
+          <Typography variant="h5">Polling App</Typography>
+        </Link>
+
         <div className="buttons">
           <Link to="/login" className="buttons__button">
             Login

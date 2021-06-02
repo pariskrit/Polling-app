@@ -4,6 +4,8 @@
 
 .navbar__title {
   margin-left: 50px;
+  text-decoration: none;
+  color: white;
   flex: 0.9;
 }
 

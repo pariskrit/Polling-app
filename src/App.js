@@ -72,7 +72,7 @@ function App(props) {
             )}
           />
           <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
+          <Route path="/signup" component={Register} />
         </Container>
       </Switch>
     </div>
